@@ -1,4 +1,4 @@
-```# Digital Performance
+# Digital Performance
 
 Sistema web para gestores de agência de Marketing Digital.
 
@@ -34,7 +34,7 @@ digital-performance/
 └── README.md
 ```
 
-## Como executar
+## Como executar:
 
 1. **Instale as dependências:**
    ```
@@ -52,22 +52,24 @@ digital-performance/
    - Frontend: http://localhost:5000
    - API: http://localhost:5000/api
 
-## Testando a API via Postman
+## Testando a API via Postman:
 
 - **Login**
   - Endpoint: `POST /api/login`
   - Body (JSON):
-    ```json
-    {
+    
+  ```
+  {
   "email": "admin@gmail.com",
   "password": "oeiruhn56146"
-    }
-                 OU
+  }
+  ```
+  ``` 
     {
       "email": "user@gmail.com",
       "password": "908ijofff"
     }
-    ```
+  ```
 
 - **Métricas**
   - Endpoint: `GET /api/metrics`
@@ -76,8 +78,11 @@ digital-performance/
     ```
     http://localhost:5000/api/metrics?role=admin&date_from=2024-01-01&date_to=2024-01-31&sort_by=score&order=desc
     ```
+    ```
+    http://localhost:5000/api/metrics?role=user&date_from=2024-01-01&date_to=2024-01-31&sort_by=score&order=desc
+    ```
 
-## Observações
+## Observações:
 
 - Não é possível cadastrar novos usuários pelo sistema.
 - Login apenas com os dados do users.csv
@@ -95,4 +100,3 @@ digital-performance/
   user2
   password: 908ijofff
   user
-    ```
