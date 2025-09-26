@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Dados</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Bem-vindo {{ user.username }}</h2>
+    <a href="{{ url_for('web.logout') }}">Sair</a>
+
+    <form method="GET" class="filtros">
+  <label for="date_from">De:</label>
+  <input type="date" id="date_from" name="date_from" value="{{ request.args.get('date_from','') }}">
+  <label for="date_to">Até:</label>
+  <input type="date" id="date_to" name="date_to" value="{{ request.args.get('date_to','') }}">
+  <label for="sort_by">Ordenar por:</label>
+  <select name="sort_by" id="sort_by">
+    <option value="date" {% if sort_by == "date" %}selected{% endif %}>Data</option>
+    <option value="account_id" {% if sort_by == "account_id" %}selected{% endif %}>Account</option>
+    <option value="campaign_id" {% if sort_by == "campaign_id" %}selected{% endif %}>Campaign</option>
+    {% if role == "admin" %}
+    <option value="cost_micros" {% if sort_by == "cost_micros" %}selected{% endif %}>Cost_micros</option>
+    {% endif %}
+    <option value="clicks" {% if sort_by == "clicks" %}selected{% endif %}>Clicks</option>
+    <option value="conversions" {% if sort_by == "conversions" %}selected{% endif %}>Conversions</option>
+    <option value="impressions" {% if sort_by == "impressions" %}
+selected{% endif %}>Impressions</option>
+    <option value="interactions" {% if sort_by == "interactions" %}selected{% endif %}>Interactions</option>
+
+  </select>
+  <select name="order" id="order">
+    <option value="asc" {% if order == "asc" %}selected{% endif %}>Ascendente</option>
+    <option value="desc" {% if order == "desc" %}selected{% endif %}>Descendente</option>
+  </select>
+  <button type="submit">Filtrar</button>
+  <a href="{{ url_for('web.dados') }}">Limpar filtros</a>
+</form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Campaign</th>
+          {% if role == "admin" %}
+          <th>Cost_micros</th>
+          {% endif %}
+          <th>Clicks</th>
+          <th>Conversions</th>
+          <th>Impressions</th>
+          <th>Interactions</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in metrics %}
+        <tr>
+          <td>{{ m.account_id }}</td>
+          <td>{{ m.campaign_id }}</td>
+          {% if role == "admin" %}
+          <td>{{ m.cost_micros }}</td>
+          {% endif %}
+          <td>{{ m.clicks }}</td>
+          <td>{{ m.conversions }}</td>
+          <td>{{ m.impressions }}</td>
+          <td>{{ m.interactions }}</td>
+          <td>{{ m.date.strftime("%Y-%m-%d") if m.date else m.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="page">
+  {% if page > 1 %}
+    <a href="?page={{ page-1 }}&sort_by={{ sort_by }}&order={{ order }}{% if request.args.get('date_from') %}&date_from={{ request.args.get('date_from') }}{% endif %}{% if request.args.get('date_to') %}&date_to={{ request.args.get('date_to') }}{% endif %}">Anterior</a>
+  {% endif %}
+
+  Página {{ page }} de {{ (total // per_page) + (1 if total % per_page else 0) }}
+
+  {% if page * per_page < total %}
+    <a href="?page={{ page+1 }}&sort_by={{ sort_by }}&order={{ order }}{% if request.args.get('date_from') %}&date_from={{ request.args.get('date_from') }}{% endif %}{% if request.args.get('date_to') %}&date_to={{ request.args.get('date_to') }}{% endif %}">Próxima</a>
+  {% endif %}
+</div>
+
+  </div>
+</body>
+</html>
