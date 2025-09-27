@@ -17,7 +17,7 @@ def login():
         flash('Credenciais inválidas', 'error')
         return redirect(url_for('web.home'))
 
-    # Salva usuário na sessão
+  
     session['user'] = user
     return redirect(url_for('web.dados'))
 
@@ -27,7 +27,6 @@ def dados():
     if not user:
         return redirect(url_for('web.home'))
 
-    # Pegando parâmetros da URL para paginação e ordenação
 
     sort_by = request.args.get('sort_by', 'date')
     order = request.args.get('order', 'asc')
@@ -37,7 +36,6 @@ def dados():
     date_to = request.args.get('date_to')
     role = user.get('role', 'user')
 
-    # Buscar métricas (ajuste conforme sua função)
 
     df = get_metrics(date_from, date_to, sort_by, order, role)
     total = len(df)
