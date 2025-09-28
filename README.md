@@ -50,12 +50,11 @@ digital-performance/
 
 4. **Acesse o sistema:**
    - Frontend: http://localhost:5000
-   - API: http://localhost:5000/api
 
 ## Testando a API via Postman:
 
 - **Login**
-  - Endpoint: `POST /api/login`
+  - Endpoint: `POST http://localhost:5000/api/login`
   - Body (JSON):
     
   ```
@@ -72,7 +71,7 @@ digital-performance/
   ```
 
 - **Métricas**
-  - Endpoint: `GET /api/metrics`
+  - Endpoint: `GET http://localhost:5000/api/metrics`
   - Parâmetros: `role`, `date_from`, `date_to`, `sort_by`, `order`
   - Exemplo:
     ```
@@ -81,6 +80,17 @@ digital-performance/
     ```
     http://localhost:5000/api/metrics?role=user&date_from=2024-01-01&date_to=2024-01-31&sort_by=score&order=desc
     ```
+
+
+   Endpoint POST
+     
+<img border="0" data-original-height="1080" data-original-width="1920" height="600" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiD-FdD2sxQDRP5c7MwTslMJNUJ44_iDSpcv88DCR1Ancwam-Iiddl5kn4Xh2Zy_hp-k8mbDlNd2mad1NXayDPOCC0ES-J5v2TQ4ce0oUtrAUpAMDl9nM1-OphkV33Jci_UeSqgVEbvMR3VXoCgO7_f2GHK-7BfTUjR_x4B2hqXNXpOr-LPnQPuVkZrMebj/s1897/1.png" width="1280" />
+
+Endpoint GET
+   
+<img border="0" data-original-height="1080" data-original-width="1920" height="600" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgREYYxqOwWIssXC2JeWeZgBqaDzpbGtaA8HIRVjc5rfVejdEUEEaPS9mnKs83cWpR_gBUnHJ0CydLMtlV4UV45UXRN_dstfcT7DSaVSGvmxI0kEnVMaAxsQzuB5wJu9c6YQAVd7MHGyzM5RuKiv6nVKDMUtftyPR4l5GEE6Rc_T61esbq4Z1COLoO-FhR-/s1894/2.png" width="1280" />
+
+
 
 ## Observações:
 
