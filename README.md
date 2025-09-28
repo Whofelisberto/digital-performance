@@ -34,6 +34,12 @@ digital-performance/
 └── README.md
 ```
 
+## Clone o Projeto:
+```
+git clone https://github.com/Whofelisberto/digital-performance.git
+```
+
+
 ## Como executar:
 
 1. **Instale as dependências:**
